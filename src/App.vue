@@ -1,0 +1,141 @@
+<template>
+  <div className="todoapp">
+      <h1 className="todoapp__title">todos</h1>
+
+      <div className="todoapp__content">
+        <header className="todoapp__header">
+          <button
+            type="button"
+            className="todoapp__toggle-all active"
+            data-cy="ToggleAllButton"
+          ></button>
+
+          <form>
+            <input
+              data-cy="NewTodoField"
+              type="text"
+              className="todoapp__new-todo"
+              placeholder="What needs to be done?"
+            />
+          </form>
+        </header>
+
+        <section className="todoapp__main" data-cy="TodoList">
+          <div data-cy="Todo" className="todo completed">
+            <label className="todo__status-label">
+              <input
+                data-cy="TodoStatus"
+                type="checkbox"
+                className="todo__status"
+                checked
+              />
+            </label>
+
+            <span data-cy="TodoTitle" className="todo__title">
+              Completed Todo
+            </span>
+
+            <button type="button" className="todo__remove" data-cy="TodoDelete">
+              ×
+            </button>
+          </div>
+
+          <div data-cy="Todo" className="todo">
+            <label className="todo__status-label">
+              <input
+                data-cy="TodoStatus"
+                type="checkbox"
+                className="todo__status"
+              />
+            </label>
+
+            <span data-cy="TodoTitle" className="todo__title">
+              Not Completed Todo
+            </span>
+
+            <button type="button" className="todo__remove" data-cy="TodoDelete">
+              ×
+            </button>
+          </div>
+
+          <div data-cy="Todo" className="todo">
+            <label className="todo__status-label">
+              <input
+                data-cy="TodoStatus"
+                type="checkbox"
+                className="todo__status"
+              />
+            </label>
+
+            <form>
+              <input
+                data-cy="TodoTitleField"
+                type="text"
+                className="todo__title-field"
+                placeholder="Empty todo will be deleted"
+                value="Todo is being edited now"
+              />
+            </form>
+          </div>
+
+          <div data-cy="Todo" className="todo">
+            <label className="todo__status-label">
+              <input
+                data-cy="TodoStatus"
+                type="checkbox"
+                className="todo__status"
+              />
+            </label>
+
+            <span data-cy="TodoTitle" className="todo__title">
+              Todo is being saved now
+            </span>
+
+            <button type="button" className="todo__remove" data-cy="TodoDelete">
+              ×
+            </button>
+          </div>
+        </section>
+
+        <footer className="todoapp__footer" data-cy="Footer">
+          <span className="todo-count" data-cy="TodosCounter">
+            3 items left
+          </span>
+
+          <nav className="filter" data-cy="Filter">
+            <a
+              href="#/"
+              className="filter__link selected"
+              data-cy="FilterLinkAll"
+            >
+              All
+            </a>
+
+            <a
+              href="#/active"
+              className="filter__link"
+              data-cy="FilterLinkActive"
+            >
+              Active
+            </a>
+
+            <a
+              href="#/completed"
+              className="filter__link"
+              data-cy="FilterLinkCompleted"
+            >
+              Completed
+            </a>
+          </nav>
+
+          <button
+            type="button"
+            className="todoapp__clear-completed"
+            data-cy="ClearCompletedButton"
+          >
+            Clear completed
+          </button>
+        </footer>
+      </div>
+    </div>
+</template>
