@@ -1,12 +1,30 @@
-<template>
-  <div className="todoapp">
-      <h1 className="todoapp__title">todos</h1>
+<script>
+const todos = [
+  {id: 1, title: 'HTML + CSS', completed: true},
+  {id: 2, title: 'Javascript', completed: false},
+  {id: 3, title: 'React', completed: false},
+  {id: 4, title: 'Vue', completed: false},
+];
 
-      <div className="todoapp__content">
-        <header className="todoapp__header">
+export default {
+  data() {
+    return {
+      todos,
+    }
+  },
+}
+</script>
+
+
+<template>
+  <div class="todoapp">
+      <h1 class="todoapp__title">todos</h1>
+
+      <div class="todoapp__content">
+        <header class="todoapp__header">
           <button
             type="button"
-            className="todoapp__toggle-all active"
+            class="todoapp__toggle-all active"
             data-cy="ToggleAllButton"
           ></button>
 
@@ -14,98 +32,60 @@
             <input
               data-cy="NewTodoField"
               type="text"
-              className="todoapp__new-todo"
+              class="todoapp__new-todo"
               placeholder="What needs to be done?"
             />
           </form>
         </header>
 
-        <section className="todoapp__main" data-cy="TodoList">
-          <div data-cy="Todo" className="todo completed">
-            <label className="todo__status-label">
+        <section class="todoapp__main" data-cy="TodoList">
+          <div 
+            data-cy="Todo" 
+            class="todo"
+            :class="{ 'completed': todo.completed }" 
+            v-for="todo of todos" 
+            :key="todo.id"
+          >
+            <label class="todo__status-label">
               <input
                 data-cy="TodoStatus"
                 type="checkbox"
-                className="todo__status"
+                class="todo__status"
                 checked
               />
             </label>
 
-            <span data-cy="TodoTitle" className="todo__title">
-              Completed Todo
-            </span>
-
-            <button type="button" className="todo__remove" data-cy="TodoDelete">
-              ×
-            </button>
-          </div>
-
-          <div data-cy="Todo" className="todo">
-            <label className="todo__status-label">
-              <input
-                data-cy="TodoStatus"
-                type="checkbox"
-                className="todo__status"
-              />
-            </label>
-
-            <span data-cy="TodoTitle" className="todo__title">
-              Not Completed Todo
-            </span>
-
-            <button type="button" className="todo__remove" data-cy="TodoDelete">
-              ×
-            </button>
-          </div>
-
-          <div data-cy="Todo" className="todo">
-            <label className="todo__status-label">
-              <input
-                data-cy="TodoStatus"
-                type="checkbox"
-                className="todo__status"
-              />
-            </label>
-
-            <form>
+            <form v-if="false">
               <input
                 data-cy="TodoTitleField"
                 type="text"
-                className="todo__title-field"
+                class="todo__title-field"
                 placeholder="Empty todo will be deleted"
                 value="Todo is being edited now"
               />
             </form>
-          </div>
 
-          <div data-cy="Todo" className="todo">
-            <label className="todo__status-label">
-              <input
-                data-cy="TodoStatus"
-                type="checkbox"
-                className="todo__status"
-              />
-            </label>
+            <template v-else>
+              <span data-cy="TodoTitle" class="todo__title">
+                {{ todo.title }}
+              </span>
 
-            <span data-cy="TodoTitle" className="todo__title">
-              Todo is being saved now
-            </span>
-
-            <button type="button" className="todo__remove" data-cy="TodoDelete">
-              ×
-            </button>
+              <button type="button" class="todo__remove" data-cy="TodoDelete">
+                ×
+              </button>
+            </template>
           </div>
         </section>
 
-        <footer className="todoapp__footer" data-cy="Footer">
-          <span className="todo-count" data-cy="TodosCounter">
+        <footer class="todoapp__footer" data-cy="Footer">
+          <span class="todo-count" data-cy="TodosCounter">
             3 items left
           </span>
 
-          <nav className="filter" data-cy="Filter">
+          <nav class="filter" data-cy="Filter">
             <a
               href="#/"
-              className="filter__link selected"
+              class="filter__link selected"
               data-cy="FilterLinkAll"
             >
               All
@@ -113,7 +93,7 @@
 
             <a
               href="#/active"
-              className="filter__link"
+              class="filter__link"
               data-cy="FilterLinkActive"
             >
               Active
@@ -121,7 +101,7 @@
 
             <a
               href="#/completed"
-              className="filter__link"
+              class="filter__link"
               data-cy="FilterLinkCompleted"
             >
               Completed
@@ -130,7 +110,7 @@
 
           <button
             type="button"
-            className="todoapp__clear-completed"
+            class="todoapp__clear-completed"
             data-cy="ClearCompletedButton"
           >
             Clear completed
